@@ -4,33 +4,47 @@ import MyComponent from './examples/MyComponent';
 import TodoList from './Todos/ListTodo';
 import { ToastContainer, toast } from 'react-toastify';
 import { Bounce } from 'react-toastify';
+import Nav from './Nav/Nav';
+import Home from './examples/Home';
+
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Simple Todo App with React !!!
-        </p>
+    <BrowserRouter>
+      <div className="App">
+        <header className="App-header">
+          <Nav />
+          <img src={logo} className="App-logo" alt="logo" />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/todos" element={<TodoList />} />
 
-        {/* <MyComponent /> */}
-        <TodoList />
-      </header>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
-    </div>
+            <Route path="/about" element={<MyComponent />} />
+
+          </Routes>
+
+        </header>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
+      </div>
+    </BrowserRouter>
   );
 }
 
